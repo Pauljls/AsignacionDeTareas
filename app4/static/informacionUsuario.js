@@ -95,12 +95,27 @@ function cargarInformacionUsuario(idUsuario) {
     fetch(`/obtenerDatosUsuario?idUsuario=${idUsuario}`)
     .then(response => response.json())
     .then(data => {
-        document.querySelector('input[name="usernameUsuario"]').value = data.username;
-        document.querySelector('input[name="nombreUsuario"]').value = data.nombre;
-        document.querySelector('input[name="apellidoUsuario"]').value = data.apellido;
-        document.querySelector('input[name="profesionUsuario"]').value = data.profesion;
-        document.querySelector('input[name="emailUsuario"]').value = data.email;
-        document.querySelector('input[name="nroCelular"]').value = data.nroCelular;
+        username =document.getElementById("usernameUsuario")
+        userNombre =document.getElementById("nombreUsuario")
+        userApellido =document.getElementById("apellidoUsuario")
+        userProfesion =document.getElementById("profesionUsuario")
+        userEmail =document.getElementById("emailUsuario")
+        userCelular =document.getElementById("nroCelular")
+
+        username.value=''
+        userNombre.value=''
+        userApellido.value=''
+        userProfesion.value=''
+        userEmail.value=''
+        userCelular.value=''
+
+        username.value=data.username
+        userNombre.value=data.nombre
+        userApellido.value=data.apellido
+        userProfesion.value=data.profesion
+        userEmail.value=data.email
+        userCelular.value=data.nroCelular
+
 
         
     });

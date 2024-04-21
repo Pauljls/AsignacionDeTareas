@@ -152,12 +152,14 @@ def obtenerDatosUsuario(request):
     idUsuario =  request.GET.get('idUsuario')
     usuario = User.objects.get(id=idUsuario)
     data = {
+        'username': usuario.username,
         'nombre': usuario.first_name,
         'apellido': usuario.last_name,
         'profesion': usuario.datosusuario.profesionUsuario,
         'email': usuario.email,
         'nroCelular': usuario.datosusuario.nroCelular,  
     }
+    print(data)
     return JsonResponse(data)
 
 
