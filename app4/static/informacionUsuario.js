@@ -115,8 +115,30 @@ function cargarInformacionUsuario(idUsuario) {
         userProfesion.value=data.profesion
         userEmail.value=data.email
         userCelular.value=data.nroCelular
-
-
-        
     });
 }
+
+window.onload = async () => {
+    const form = document.getElementById('form');
+    form.onsubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        const datos =JSON.stringify(data)
+        console.log(datos)
+        try {
+            await fetch('/actualizarUsuario', {
+                method: 'PUT', // Cambiado de UPDATE a PUT
+                headers: {
+                    'Content-Type': 'application/json', // Agregado el Content-Type
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
+                body: datos,
+            });
+        } catch (err) {
+            console.log('Algo salió mal', err);
+        }
+    };
+};
+

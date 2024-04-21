@@ -159,7 +159,26 @@ def obtenerDatosUsuario(request):
         'email': usuario.email,
         'nroCelular': usuario.datosusuario.nroCelular,  
     }
-    print(data)
+    #print(data)
     return JsonResponse(data)
+
+from django.http import JsonResponse, HttpResponseRedirect
+
+def actualizarUsuario(request):
+    if request.method == 'PUT':
+        datos = json.loads(request.body)
+        username = datos.get('usernameUsuario')
+        user = User.objects.get(username=username)
+        user.first_name = datos.get('nombreUsuario')
+        user.last_name = datos.get('apellidoUsuario')
+        user.datosusuario.profesionUsuario = datos.get('profesionUsuario')
+        user.datosusuario.nroCelular = datos.get('nroCelular')
+        user.save()
+        return JsonResponse({'resp': 'ok'})
+
+
+
+         
+
 
 

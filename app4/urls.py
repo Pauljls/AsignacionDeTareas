@@ -15,5 +15,5 @@ urlpatterns = [
     path('publicarComentario',views.publicarComentario,name='publicarComentario'),
     path('react1',views.react1,name='react1'),
     path('obtenerDatosUsuario', views.obtenerDatosUsuario, name='obtenerDatosUsuario'),
-    #path('actualizarUsuario',views.actualizarUsuario, name='actualizarUsuario')
+    path('actualizarUsuario',views.actualizarUsuario, name='actualizarUsuario')
 ]
