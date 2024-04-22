@@ -142,3 +142,24 @@ window.onload = async () => {
     };
 };
 
+function  eliminar (id){
+    const nodo = document.getElementById(`${id}`)
+    console.log(nodo)
+
+    nodo.parentElement.parentElement.remove()
+
+    fetch('/eliminarUsuario',{
+        method : 'DELETE',
+        headers : {
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+        body : JSON.stringify({ id : id})
+    })
+    .then( ()=>{
+        console.log('Elemento eliminado')
+    })
+    .catch(err => console.log(`Ocurrio un error: 
+    ${err}`))
+};
+
+

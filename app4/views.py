@@ -162,8 +162,6 @@ def obtenerDatosUsuario(request):
     #print(data)
     return JsonResponse(data)
 
-from django.http import JsonResponse, HttpResponseRedirect
-
 def actualizarUsuario(request):
     if request.method == 'PUT':
         datos = json.loads(request.body)
@@ -174,6 +172,15 @@ def actualizarUsuario(request):
         user.datosusuario.profesionUsuario = datos.get('profesionUsuario')
         user.datosusuario.nroCelular = datos.get('nroCelular')
         user.save()
+        return JsonResponse({'resp': 'ok'})
+    
+
+def eliminarUsuario(request):
+    if(request.method == 'DELETE'):
+        datos = json.loads(request.body)
+        id = datos.get('id')
+        user = User.objects.get(id = id)
+        user.delete()
         return JsonResponse({'resp': 'ok'})
 
 
